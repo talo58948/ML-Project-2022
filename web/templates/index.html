@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Find Out The Genre Of A Song!</title>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel='stylesheet' type='text/css' media='screen' href="{{ url_for('static',filename='styles/index.css') }}">
+        <link rel="icon" href="https://icons-for-free.com/download-icon-music-131964753036631366_512.png">
+    </head>
+    <body>
+        <div id="root-div">
+            <h1>Upload A Song</h1>
+            <form enctype="multipart/form-data" action="" method="POST">
+                <input type="hidden" name="MAX_FILE_SIZE" value="8000000" />
+                <input name="uploadedfile1" type="file" id="file-uploader" accept=".mp3,.wav"/><br />
+                <input type="submit" value="Submit File" />
+            </form>
+            <p>Upload and submit an audio file (mp3 or wav) and see it's genre</p>
+            <p id="feedback"></p>
+        </div>
+
+        <script>
+            const fileUploader = document.getElementById('file-uploader');
+            fileUploader.addEventListener('change', (event) => {
+                const files = event.target.files;
+                console.log('files', files);
+
+                // show the upload feedback
+                
+                const msg = `File ${files[0].name} uploaded successfully!`;
+
+                const feedback = document.getElementById('feedback');
+                feedback.innerHTML = msg;
+            })
+        </script>
+        <script>
+            const rootDiv = document.getElementById('root-div');
+            if ('{{genre}}'){
+                const genreText = document.createElement('h1');
+                genreText.innerHTML = 'THE GENRE OF THE SONG IS {{genre}}';
+                rootDiv.appendChild(genreText);
+                feedback.parentElement.removeChild(feedback);
+            }
+
+            if('{{exception}}'){
+                if('{{exception}}' === 'unknown'){
+                    text = 'An unknown exception occured please try again';
+                }else{
+                    text = 'An exception occured, probably because the file uploaded is too small, try uploading a different file';
+                }
+                const exceptionText = document.createElement('h3');
+                rootDiv.appendChild(exceptionText);
+                exceptionText.innerHTML = text;
+            }
+        </script>
+    </body>
+</html>
