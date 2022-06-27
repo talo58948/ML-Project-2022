@@ -23,4 +23,4 @@ conda activate tal
 python init_gui.py
 ```
 
-* Note, MacOSX version has only been tested on the new M1 chip, that is based on the arm64 architecture. It is NOT garunteed to work with other architectures in MacOS, as they probably have different packages sources.
+* Note, the MacOSX version has only been tested on the new M1 chip, that is based on the arm64 architecture. It is NOT garunteed to work with other architectures in MacOS, as they probably have different packages.
